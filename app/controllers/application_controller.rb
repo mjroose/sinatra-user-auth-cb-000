@@ -42,7 +42,10 @@ class ApplicationController < Sinatra::Base
 
   get '/users/home' do
     @user = User.find(session[:id])
-    @user ? erb :'/users/home' : erb :'/session/login'
+    if @user
+      erb :'/users/home'
+    else
+      erb :'/session/login'
     end
   end
 
